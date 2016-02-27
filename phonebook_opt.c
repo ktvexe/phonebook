@@ -26,9 +26,9 @@ entry *append(char lastName[], entry *e)
     return e;
 }
 
-void append_elements(char elements[16],entry *e)
+void append_elements(char elements[16],char *info)
 {
-    e->firstName_ptr = (char*)malloc(16*sizeof(char));
-    strcpy(e->firstName_ptr, elements);
+    info = (char*)malloc(16*sizeof(char));
+    strcpy(info, elements);
     return;
 }

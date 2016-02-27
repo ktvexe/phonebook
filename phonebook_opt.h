@@ -8,22 +8,20 @@
 #define OPT 1
 typedef struct __PHONE_BOOK_ENTRY {
     char lastName[MAX_LAST_NAME_SIZE];
-    /*
-    char firstName[16];
-    char email[16];
-    char phone[10];
-    char cell[10];
-    char addr1[16];
-    char addr2[16];
-    char city[16];
-    char state[2];
-    char zip[5];
-    */
     char *firstName_ptr;
+    char *email_ptr;
+    char *phone_ptr;
+    char *cell_ptr;
+    char *addr1_ptr;
+    char *addr2_ptr;
+    char *city_ptr;
+    char *state_ptr;
+    char *zip_ptr;
+
     struct __PHONE_BOOK_ENTRY *pNext;
 } entry;
 
 entry *findName(char lastname[], entry *pHead);
 entry *append(char lastName[], entry *e);
-void append_elements(char elements[16],entry *e);
+void append_elements(char elements[16],char *info);
 #endif

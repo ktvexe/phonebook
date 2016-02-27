@@ -69,7 +69,12 @@ int main(int argc, char *argv[])
     assert(findName(input, e) &&
            "Did you implement findName() in " IMPL "?");
     assert(0 == strcmp(findName(input, e)->lastName, "zyxel"));
-
+#if defined(ORG)
+    entry* tmpe=findName(input,e);
+    tmpe -> firstName_ptr=NULL;
+    append_elements("apple",tmpe->firstName_ptr);
+    assert(0 == strcmp(tmpe->firstName_ptr, "apple"));
+#endif
 #if defined(__GNUC__)
     __builtin___clear_cache((char *) pHead, (char *) pHead + sizeof(entry));
 #endif
