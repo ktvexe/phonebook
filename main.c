@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
 {
     FILE *fp;
     int i = 0;
+    unsigned char index_out=0;
     char line[MAX_LAST_NAME_SIZE];
     struct timespec start, end;
     double cpu_time1, cpu_time2;
@@ -65,10 +66,16 @@ int main(int argc, char *argv[])
     /* the givn last name to find */
     char input[MAX_LAST_NAME_SIZE] = "zyxel";
     e = pHead;
-
+#if defined(OPT)
+    assert(findName(input, e,(&index_out)) &&
+           "Did you implement findName() in " IMPL "?");
+    assert(0 == strcmp(findName(input, e,&index_out)->lastName[index_out-1], "zyxel"));
+#else
     assert(findName(input, e) &&
            "Did you implement findName() in " IMPL "?");
     assert(0 == strcmp(findName(input, e)->lastName, "zyxel"));
+#endif
+    /*try pointer of extern information*/
 #if defined(ORG)
     entry* tmpe=findName(input,e);
     tmpe -> firstName_ptr=NULL;
@@ -80,7 +87,11 @@ int main(int argc, char *argv[])
 #endif
     /* compute the execution time */
     clock_gettime(CLOCK_REALTIME, &start);
+#if defined(OPT)
+    findName(input, e,&index_out);
+#else
     findName(input, e);
+#endif
     clock_gettime(CLOCK_REALTIME, &end);
     cpu_time2 = diff_in_second(start, end);
 
