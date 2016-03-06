@@ -44,9 +44,32 @@ entry *append(char lastName[], entry *e)
     return e;
 }
 
+unsigned int BKDRHash(char *str)
+{
+    unsigned int seed = 31; // 31 131 1313 13131 131313 etc..
+    unsigned int hash = 0;
+
+    while (*str) {
+        hash = hash * seed + (*str++);
+    }
+
+    return (hash & 0x7FFFFFFF);
+}
+
 void append_elements(char elements[16],char *info)
 {
     info = (char*)malloc(16*sizeof(char));
     strcpy(info, elements);
     return;
+}
+void freeList(entry *head)
+{
+    entry *tmp;
+
+    while (head != NULL) {
+        tmp = head;
+        head = head->pNext;
+        free(tmp);
+    }
+
 }
