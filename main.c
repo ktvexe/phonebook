@@ -119,8 +119,10 @@ int main(int argc, char *argv[])
     cpu_time2 = diff_in_second(start, end);
 
     FILE *output;
-#if defined(OPT) ||defined(OPT_HASH)
-    output = fopen("opt.txt", "a");
+#if defined(OPT)
+    output = fopen("opt_struct.txt", "a");
+#elif defined(OPT_HASH)
+    output = fopen("opt_hash.txt", "a");
 #else
     output = fopen("orig.txt", "a");
 #endif
@@ -131,9 +133,11 @@ int main(int argc, char *argv[])
     printf("execution time of findName() : %lf sec\n", cpu_time2);
 
 #if defined(OPT)
-//	 if (pHead->pNext) free(pHead->pNext);
-//    free(pHead);
     freeList(pHead);
+#elif defined(OPT_HASH)
+    for (i = 0; i < SIZE; i++) {
+        freeList(e[i]->pNext);
+    }
 #endif
     return 0;
 }
