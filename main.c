@@ -46,6 +46,7 @@ int main(int argc, char *argv[])
     for (i = 0; i < SIZE; ++i) {
         e[i] = &pHead[i];
         e[i]->pNext = NULL;
+        e[i]->index =0;
     }
     i = 0;
 #else

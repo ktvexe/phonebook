@@ -32,7 +32,7 @@ entry *append(char lastName[], entry *e)
         e->pNext = NULL;
     }
     //struct is full
-    else if(e->index ==128) {
+    else if(e->index == entrySize) {
         e->pNext = (entry *) malloc(sizeof(entry));
         e = e->pNext;
         e->pNext = NULL;
@@ -65,7 +65,6 @@ void append_elements(char elements[16],char *info)
 void freeList(entry *head)
 {
     entry *tmp;
-
     while (head != NULL) {
         tmp = head;
         head = head->pNext;

@@ -5,7 +5,7 @@ set title 'perfomance comparison'
 set term png enhanced font 'Verdana,10'
 set output 'runtime.png'
 
-plot [:][:0.08]'output.txt' using 2:xtic(1) with histogram title 'original', \
+plot [:][:0.12]'output.txt' using 2:xtic(1) with histogram title 'original', \
 '' using 3:xtic(1) with histogram title 'struct'  , \
 '' using 4:xtic(1) with histogram title 'hash', \
 '' using ($0-0.06):($2+0.0015):2 with labels title ' ', \
